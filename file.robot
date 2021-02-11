@@ -4,8 +4,8 @@ Resource     resources/resource.robot
 Resource     resources/WEEK/week.robot
 Resource     resources/PageObjects/Login/Login.robot
 Resource     resources/PageObjects/Blackboard/blackboard.robot
-Resource     data/sensive/sensive.robot
-Resource     write_here.robot
+# Resource     data/sensive/aluno.xlsx
+# Resource     data/sensive/materias.xlsx
 
 *** Keywords ***
 Date Convertion 
