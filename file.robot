@@ -7,6 +7,11 @@ Resource     resources/PageObjects/Blackboard/blackboard.robot
 # Resource     data/sensive/aluno.xlsx
 # Resource     data/sensive/materias.xlsx
 
+*** Variables ***
+${DIR}             ${CURDIR}
+${MATERIAL}        materias.xls
+${LOGIN}           aluno.xls 
+
 *** Keywords ***
 Date Convertion 
     [Arguments]    ${Date}
