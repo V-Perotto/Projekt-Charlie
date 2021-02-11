@@ -5,6 +5,7 @@ Resource     resources/WEEK/week.robot
 Resource     resources/PageObjects/Login/Login.robot
 Resource     resources/PageObjects/Blackboard/blackboard.robot
 Resource     data/sensive/sensive.robot
+Resource     write_here.robot
 
 *** Keywords ***
 Date Convertion 
@@ -18,4 +19,8 @@ Get Date
 
 Day is more than other
     [Arguments]    ${day}
-    Run Keyword If    ${day} > 20210301    Start College
+    Run Keyword If    ${day} > 20210101    Log  Iniciar aulas
+
+Get Time
+    ${CurTime}     Get Current Date    result_format=%H%M
+    [Return]       ${CurTime}

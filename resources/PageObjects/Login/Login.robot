@@ -18,3 +18,5 @@ Acessar Blackboard
 Cookies
     Wait Until Element Is Visible    ${BTN_OK}
     Click Element                    ${BTN_OK}
+    Wait Until Element Is Visible    ${LINK_CLICK}
+    Click Element                    ${LINK_CLICK}
