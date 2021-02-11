@@ -6,5 +6,5 @@ Resource     ../file.robot
 
 *** Test Cases ***
 Acessar Aulas: PUCPR
-    Acessar aula
+    # Acessar aula
     # Acessar matérias
