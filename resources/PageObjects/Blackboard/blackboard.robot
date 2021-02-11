@@ -11,8 +11,8 @@ ${COLLABORATE}       xpath=//span[contains(text(), "Blackboard Collaborate Ultra
 *** Keywords ***
 Acessar matérias
     [Arguments]    ${Cursos}    ${i}
-    Wait Until Element Is Visible    ${Cursos[${i}]}
-    Click Element        ${Cursos[${i}]}
+    Wait Until Element Is Visible    ${Cursos}[${i}]
+    Click Element        ${Cursos}[${i}]
     Wait Until Element Is Visible    ${MENU}
     Click Element        ${MENU}
     Wait Until Element Is Visible    ${WEBCONF}
