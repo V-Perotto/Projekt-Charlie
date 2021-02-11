@@ -9,7 +9,7 @@ ${Materia1}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[1]/a
 # ${Materia5}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[5]/a
 # ${Materia6}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[6]/a
 # ${Materia7}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[7]/a
-${Materia}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li/a[contains(text(), "${Curso${i}}")]
+${Materia}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li/a[contains(text(), "${Curso[${i}]}")]
 
 *** Keywords ***
 Acessar aula
