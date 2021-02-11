@@ -10,9 +10,10 @@ ${BTN_OK}            xpath=//button[@id="agree_button"]
 
 *** Keywords ***
 Acessar Blackboard
+    ${ID}       User ID    ${DIR}    ${LOGIN}
     Wait Until Element Is Visible    ${INPUT_USER}
-    Input Text                       ${INPUT_USER}    ${username}
-    Input Text                       ${INPUT_PASS}    ${password}
+    Input Text                       ${INPUT_USER}    ${ID}[0]
+    Input Text                       ${INPUT_PASS}    ${ID}[1]
     Click Element                    ${BTN_ENTRAR}
 
 Cookies
