@@ -2,118 +2,93 @@
 Resource    ../../file.robot
 
 *** Variables ***
-${Materia1}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[1]/a
+${i}    ${1}
+# ${Materia1}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[1]/a
 # ${Materia2}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[2]/a
-# ${Materia3}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[3]/a
-# ${Materia4}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[4]/a
-# ${Materia5}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[5]/a
-# ${Materia6}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[6]/a
-# ${Materia7}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[7]/a
-${Materia}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li/a[contains(text(), "${Curso[${i}]}")]
+${Materia}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li/a[text()]
 
 *** Keywords ***
+Procedimento Padrão
+    Open PUC
+    Acessar Blackboard
+    Cookies 
+
+############################################################################################################
+
 Acessar aula
     ${theday}     Get Date
     ${thehour}    Get Time
-    ${weekday}    Date Convertion  ${theday}
-    ${i}          Counter          ${weekday}
     Day is more than other         ${theday}
     Start College    ${weekday}    ${thehour}
 
 ############################################################################################################
 
 Start College
-    [Arguments]       ${weekday}  ${hourmin}
-    Run Keyword If    "${weekday}"=="Monday" and ${hourmin}>=1815      Segunda-Feira     ${weekday}
-    Run Keyword If    "${weekday}"=="Tueday" and ${hourmin}>=1945      Terça-Feira       ${weekday}
-    Run Keyword If    "${weekday}"=="Wednesday" and ${hourmin}>=1945   Quarta-Feira      ${weekday}
-    Run Keyword If    "${weekday}"=="Thursday" and ${hourmin}>=1815    Quinta-Feira      ${weekday}
-    Run Keyword If    "${weekday}"=="Friday" and ${hourmin}>=1815      Sexta-Feira       ${weekday}
-    ...       ELSE    Fail  Sem aula nesse dia
+    [Arguments]       ${course}   ${weekday}  ${hour}
+    Run Keyword If    Segunda in "${weekday}" and ${hourmin}>=${hour}    Access BB Course   ${course}    
+    Run Keyword If    Terça in "${weekday}" and ${hourmin}>=${hour}      Access BB Course   ${course}
+    Run Keyword If    Quarta in "${weekday}" and ${hourmin}>=${hour}     Access BB Course   ${course}
+    Run Keyword If    Quinta in "${weekday}" and ${hourmin}>=${hour}     Access BB Course   ${course}
+    Run Keyword If    Sexta in "${weekday}" and ${hourmin}>=${hour}      Access BB Course   ${course}
+    ...       ELSE    Log To Console  Sem aula nesse dia
 
 ############################################################################################################
 
-Segunda-Feira
-    [Arguments]     ${weekday}
-    Procedimento Padrão
-    Wait Until Element Is Visible    ${Materia1}   
-    ${Cursos}    Cursos
-    ${i}         Counter    ${weekday}
-    ${Materia}   Materia do Dia    ${Cursos}  ${i}
-    Click Element  ${Materia}
+Percorrer Curso do Dia
+    ${lenCourses}   Materias Length
+    FOR   ${i}   IN RANGE   ${lenCourses}   
+        # ${course}       Set Course             ${i}
+        # ${hour}         Set Hour               ${i}
+        # ${weekday}      Set Weekday            ${i}
+        # ${semester}     Set Semester           ${i}
+        # ${cursmrt}      Set Current Semester   ${i}
+        # ${status}       Set Status             ${i}
+        # ${startclass}   Set Start Of Classes   ${i}
+        # ${endclass}     Set End Of Classes     ${i}
+        ${course}       Set Data    ${MATERIAL}     ${i}
+        ${hour}         Set Data    ${HOUR}         ${i}
+        ${weekday}      Set Data    ${WEEKDAY}      ${i}
+        ${semester}     Set Data    ${SEMESTER}     ${i}
+        ${cursmrt}      Set Data    ${CURSMTR}      ${i}
+        ${status}       Set Data    ${STATUS}       ${i}
+        ${startclass}   Set Data    ${STARTCLASS}   ${i}
+        ${endclass}     Set Data    ${ENDCLASS}     ${i}
+        
+        ${newhour}      Splitter Hour    ${hour}
+        ${newstart}     Splitter Day     ${startclass}
+        ${newend}       Splitter Day     ${endclass}
+        
+    END
 
-Terça-Feira 
-    [Arguments]     ${weekday}
+Weekday
+    [Arguments]       ${weekday}
     Procedimento Padrão
-    Wait Until Element Is Visible    ${Materia1}
-    ${Cursos}    Cursos
-    ${i}         Counter    ${weekday}
-    ${Materia}   Materia do Dia    ${Cursos}  ${i}
-    Click Element  ${Materia}
+    Wait Until Element Is Visible    ${Materia}   
+    # ${Cursos}    Cursos
+    # ${i}         Counter           ${weekday}
+    # ${Materia}   Materia do Dia    ${Cursos}  ${i}
+    Click Element     ${Materia}
 
-Quarta-Feira
-    [Arguments]     ${weekday}
-    Procedimento Padrão
-    Wait Until Element Is Visible    ${Materia1}
-    ${Cursos}    Cursos
-    ${i}         Counter    ${weekday}
-    ${Materia}   Materia do Dia    ${Cursos}  ${i}
-    Click Element  ${Materia}
-    
-Quinta-Feira
-    [Arguments]     ${weekday}
-    Procedimento Padrão
-    Wait Until Element Is Visible    ${Materia1}
-    ${Cursos}    Cursos
-    ${i}         Counter    ${weekday}
-    ${Materia}   Materia do Dia    ${Cursos}  ${i}
-    Click Element  ${Materia}
-
-Sexta-Feira
-    [Arguments]     ${weekday}
-    Procedimento Padrão
-    Wait Until Element Is Visible    ${Materia1}
-    ${Cursos}    Cursos
-    ${i}         Counter    ${weekday}
-    ${Materia}   Materia do Dia    ${Cursos}  ${i}
-    Click Element  ${Materia}
 
 ############################################################################################################
+Access BB Course
+    [Arguments]       ${course}
+    # ...
 
-Procedimento Padrão
-    Open PUC
-    Acessar Blackboard
-    Cookies 
-
-Cursos
-    ${Cursos}    Create List    ${Curso_Segunda}    ${Curso_Terca}    ${Curso_Quarta}    ${Curso_Quinta}    ${Curso_Sexta}
-    [Return]    ${Cursos}
-
-Counter
-    [Arguments]  ${weekday}
-    Run Keyword If  "${weekday}"=="Monday"      SEG
-    Run Keyword If  "${weekday}"=="Tuesday"     TER
-    Run Keyword If  "${weekday}"=="Wednesday"   QUA   
-    Run Keyword If  "${weekday}"=="Thursday"    QUI  
-    Run Keyword If  "${weekday}"=="Friday"      SEX
-    [Return]  ${i}
-
-Materia do Dia
-    [Arguments]    ${Cursos}  ${i}
-    ${Materia}  Set Variable   xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li/a[contains(text(), "${Cursos${i}}")]
-    [Return]    ${Materia}
-
-SEG
-    ${i}  Set Variable  ${0}
-
-TER
-    ${i}  Set Variable  ${1}
-
-QUA
-    ${i}  Set Variable  ${2}
-
-QUI
-    ${i}  Set Variable  ${3}
-    
-SEX
-    ${i}  Set Variable  ${4}
+Convert Date of Day to English
+    [Arguments]       ${weekday}
+    ${low_weekday}    Lower String   ${weekday}
+    ${ENG_DAY}        Run Keyword If    segunda in "${low_weekday}"    Set To    Monday 
+    ...    ELSE IF    terça in "${low_weekday}"      Set To    Tuesday
+    ...    ELSE IF    quarta in "${low_weekday}"     Set To    Wednesday
+    ...    ELSE IF    quinta in "${low_weekday}"     Set To    Thursday
+    ...    ELSE IF    sexta in "${low_weekday}"      Set To    Friday
+    ...    ELSE IF    sábado in "${low_weekday}"     Set To    Saturday
+    ...    ELSE IF    domingo in "${low_weekday}"    Set To    Sunday
+    ...       ELSE    Log  [ERRO]: Data inválida.
+    [Return]          ${ENG_DAY}
+ 
+Set To
+    [Arguments]       ${weekday}
+    ${new_weekday}    Set Variable    ${weekday}
+    [Return]          ${new_weekday}
