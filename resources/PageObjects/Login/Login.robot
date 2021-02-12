@@ -5,7 +5,6 @@ Resource    ../../../file.robot
 ${INPUT_USER}        xpath=//input[@id="user_id"]
 ${INPUT_PASS}        xpath=//input[@id="password"]
 ${BTN_ENTRAR}        xpath=//div[@title="entrar"]
-
 ${BTN_OK}            xpath=//button[@id="agree_button"]
 
 *** Keywords ***
