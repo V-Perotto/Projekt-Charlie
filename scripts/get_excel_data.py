@@ -11,3 +11,6 @@ def get_materia_data(path, materia):
     data = pd.read_excel(way, usecols=['Materias', 'Horarios', 'DiaDaSemana', 'Semestre', 'SemestreAtual', 'Status', 'InicioAulas', 'FimAulas'])
     course  = data.to_dict() 
     return course
+
+def lower_string(args):
+    return args.lower()
