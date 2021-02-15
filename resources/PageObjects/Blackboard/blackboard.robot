@@ -18,3 +18,13 @@ Acessar matérias
     Click Element        ${WEBCONF}
     Wait Until Element Is Visible    ${COLLABORATE}
     Click Element        ${COLLABORATE}
+
+Iniciar Aulas
+    [Arguments]       ${weekday}
+    Procedimento Padrão
+    Wait Until Element Is Visible    ${Materia}
+    Percorrer Curso do Dia
+    # ${Cursos}    Cursos
+    # ${i}         Counter           ${weekday}
+    # ${Materia}   Materia do Dia    ${Cursos}  ${i}
+    Click Element     ${Materia}
