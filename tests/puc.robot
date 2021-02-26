@@ -5,6 +5,8 @@ Resource     ../file.robot
 # Test Teardown   Maximize Browser Window
 
 *** Test Cases ***
+# PUC: Validar Matérias do Dia
 Acessar Aulas: PUCPR
-    # Acessar aula
-    # Acessar matérias
+    Procedimento Padrão
+    Percorrer Curso do Dia
+    

@@ -14,19 +14,46 @@ ${LOGIN}           aluno.xls
 ####################################################################################################
 #               [X] > > > >        GET & CONVERT MATERIAL DATA        > > [Y] > > [Z]              #
 ####################################################################################################
+
 Date Convertion 
     [Arguments]         ${Date}
-    ${Day}=             Convert Date    ${Date}    result_format=%A
+    ${Day}=             Convert Date  ${Date}   result_format=%A
     [Return]            ${Day}
 
 Get Date
-    ${CurDate}          Get Current Date    result_format=%Y%m%d
+    ${CurDate}          Get Current Date        result_format=%Y%m%d
     [Return]            ${CurDate}
 
-Day is more than other
-    [Arguments]         ${day}
-    Run Keyword If      ${day} > 20210101    Log  Iniciar aulas
+Day is More Than Other
+    [Arguments]         ${day}   ${initial}
+    ${rtn_value}        Run Keyword If          ${day} > ${initial}     Set Variable    ${TRUE}
+    ...                 ELSE                    Set Variable    ${FALSE}
+    [Return]            ${rtn_value}
 
 Get Time
-    ${CurTime}          Get Current Date    result_format=%H%M
+    ${CurTime}          Get Current Date        result_format=%H%M
     [Return]            ${CurTime}
+
+####################################################################################################
+
+Convert Date of Day to English
+    [Arguments]       ${weekday}
+    ${low_weekday}    Lower String   ${weekday}
+    ${ENG_DAY}        Set Weekday    ${low_weekday}
+    [Return]          ${ENG_DAY}
+ 
+Verify Date
+    [Arguments]       ${eng_day}     ${DAY}
+    ${rtn_date}       Run Keyword If    '${eng_day}'=='${DAY}'   Set Variable   ${TRUE}   
+    ...    ELSE       Set Variable   ${FALSE}
+    [Return]          ${rtn_date}
+
+Start Class
+    [Arguments]       ${start_hour}
+    ${nowhour}        Get Time
+    Wait For Condition      ${nowhour} >= ${start_hour} 
+
+End Class
+    [Arguments]       ${end_hour}
+    ${nowhour}        Get Time
+    Wait For Condition      ${nowhour} >= ${end_hour}
