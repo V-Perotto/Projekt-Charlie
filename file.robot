@@ -14,6 +14,7 @@ ${LOGIN}           aluno.xls
 ####################################################################################################
 #               [X] > > > >        GET & CONVERT MATERIAL DATA        > > [Y] > > [Z]              #
 ####################################################################################################
+
 Date Convertion 
     [Arguments]         ${Date}
     ${Day}=             Convert Date  ${Date}   result_format=%A
@@ -32,3 +33,27 @@ Day is More Than Other
 Get Time
     ${CurTime}          Get Current Date        result_format=%H%M
     [Return]            ${CurTime}
+
+####################################################################################################
+
+Convert Date of Day to English
+    [Arguments]       ${weekday}
+    ${low_weekday}    Lower String   ${weekday}
+    ${ENG_DAY}        Set Weekday    ${low_weekday}
+    [Return]          ${ENG_DAY}
+ 
+Verify Date
+    [Arguments]       ${eng_day}     ${DAY}
+    ${rtn_date}       Run Keyword If    '${eng_day}'=='${DAY}'   Set Variable   ${TRUE}   
+    ...    ELSE       Set Variable   ${FALSE}
+    [Return]          ${rtn_date}
+
+Start Class
+    [Arguments]       ${start_hour}
+    ${nowhour}        Get Time
+    Wait For Condition      ${nowhour} >= ${start_hour} 
+
+End Class
+    [Arguments]       ${end_hour}
+    ${nowhour}        Get Time
+    Wait For Condition      ${nowhour} >= ${end_hour}
