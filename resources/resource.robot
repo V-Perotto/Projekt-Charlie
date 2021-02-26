@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
-Library    ../scripts/get_excel_data.py
+Library    ../scripts/python.py
 
 *** Variables ***
 ${URL}                  https://ava.pucpr.br/blackboardauth/
@@ -10,29 +10,33 @@ ${BROWSER}              chrome
 *** Keywords ***
 Open PUC 
     Open Browser        ${URL}    ${BROWSER}
-    
+
+Get Keyword 
+    [Arguments]         ${kword}
+    python.get_keyword      ${kword}
+
 ####################################################################################################
 ###            > > > > > > > [xls]          GET EXCEL                                            ###
 ####################################################################################################
 
 Get Material Data
     [Arguments]         ${path}   ${materia}
-    ${materias}         get_excel_data.get_materia_data     ${path}   ${materia}
+    ${materias}         python.get_materia_data     ${path}   ${materia}
     [Return]            ${materias}
 
 Get User Data
     [Arguments]         ${path}   ${user}
-    ${login}            get_excel_data.get_user_data        ${path}   ${user}
+    ${login}            python.get_user_data        ${path}   ${user}
     [Return]            ${login}
 
 Lower String
     [Arguments]         ${args}
-    ${LOW_ARGS}         get_excel_data.lower_string         ${args} 
+    ${LOW_ARGS}         python.lower_string         ${args} 
     [Return]            ${LOW_ARGS}
 
 Get Type
     [Arguments]         ${args}
-    ${type}             get_excel_data.get_type             ${args}
+    ${type}             python.get_type             ${args}
     [Return]            ${type}
 
 ####################################################################################################
@@ -45,6 +49,7 @@ Materias Length
     [Return]            ${courseLEN}
 
 User ID
+    [Arguments]         ${DIR}      ${LOGIN}
     ${login}            Get User Data        ${DIR}   ${LOGIN} 
     Log     ${login}   
     ${user}             Set Variable         ${login}[username]
@@ -60,12 +65,12 @@ User ID
 
 Set Weekday
     [Arguments]         ${DAY}
-    ${SET_DAY}          get_excel_data.set_weekday      ${DAY}
+    ${SET_DAY}          python.set_weekday      ${DAY}
     [Return]            ${SET_DAY}
 
-Start College
-    [Arguments]         ${weekday}     ${starthour}     ${nowhour}
-    ${RTN_DAY}          get_excel_data.start_college    ${weekday}     ${starthour}     ${nowhour}
+Number Weekday
+    [Arguments]         ${weekday}     ${nowhour}     ${starthour}
+    ${RTN_DAY}          python.number_weekday    ${weekday}     ${nowhour}     ${starthour}
     [Return]            ${RTN_DAY}
 
 Set Data
@@ -80,19 +85,19 @@ Set Data
 ####################################################################################################
 
 Splitter Hour
-    [Arguments]       ${horario}
-    ${Xpart} 	      ${Ypart} = 	    Split String 	  ${horario}     :  1
-    ${Fpart}          Set Variable      ${Xpart}${Ypart}
-    [Return]          ${Fpart}
+    [Arguments]         ${horario}
+    ${Xpart} 	        ${Ypart} = 	         Split String 	  ${horario}     :  1
+    ${Fpart}            Set Variable         ${Xpart}${Ypart}
+    [Return]            ${Fpart}
 
 Set To
-    [Arguments]       ${weekday}
-    ${new_weekday}    Set Variable      ${weekday}
-    [Return]          ${new_weekday}
+    [Arguments]         ${weekday}
+    ${new_weekday}      Set Variable         ${weekday}
+    [Return]            ${new_weekday}
 
 Convert Date To Program
-    [Arguments]       ${startdate}
-    ${last_part}      ${l_part}=        Split String      ${startdate}   /  1
-    ${mid_part}       ${first_part}=    Split String      ${l_part}      /  1
-    ${frmt_date}      Set Variable      ${first_part}${mid_part}${last_part}
-    [Return]          ${frmt_date}
+    [Arguments]         ${startdate}
+    ${last_part}        ${l_part}=           Split String      ${startdate}   /  1
+    ${mid_part}         ${first_part}=       Split String      ${l_part}      /  1
+    ${frmt_date}        Set Variable         ${first_part}${mid_part}${last_part}
+    [Return]            ${frmt_date}
