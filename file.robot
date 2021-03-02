@@ -4,6 +4,7 @@ Resource     resources/resource.robot
 Resource     resources/WEEK/week.robot
 Resource     resources/PageObjects/Login/Login.robot
 Resource     resources/PageObjects/Blackboard/blackboard.robot
+Resource     resources/PageObjects/Course/Course.robot
 
 *** Variables ***
 ${DIR}             ${CURDIR}
