@@ -1,4 +1,5 @@
 *** Settings ***
+Resource   ../file.robot
 Library    SeleniumLibrary
 Library    String
 Library    ../scripts/python.py
@@ -10,10 +11,11 @@ ${BROWSER}              chrome
 *** Keywords ***
 Open PUC 
     Open Browser        ${URL}    ${BROWSER}
+    Maximize Browser Window
 
 Get Keyword 
     [Arguments]         ${kword}
-    python.get_keyword      ${kword}
+    python.get_keyword  ${kword}
 
 ####################################################################################################
 ###            > > > > > > > [xls]          GET EXCEL                                            ###
@@ -44,7 +46,8 @@ Get Type
 ####################################################################################################
 
 Materias Length
-    ${course}           Get Materia Data     ${DIR}   ${MATERIAL}    
+    [Arguments]         ${dir}      ${materia}
+    ${course}           Get Material Data    ${dir}   ${materia}
     ${courseLEN}        Evaluate             len(${course}[Materias])
     [Return]            ${courseLEN}
 
