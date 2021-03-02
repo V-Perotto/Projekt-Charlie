@@ -1,3 +1,5 @@
-data/
+__pycache__/
 results/
 scripts/__pycache__/
+.venv/
+.vscode/
