@@ -15,7 +15,7 @@ def get_user_data(path, user):
 def get_materia_data(path, materia):
     try:
         way = join(path, materia)
-        data = pd.read_excel(way, usecols=['Materias', 'Horarios', 'DiaDaSemana', 'Semestre', 'SemestreAtual', 'Status', 'InicioAulas', 'FimAulas'])
+        data = pd.read_excel(way, usecols=['Materias', 'Hora_Inicio', 'Hora_Fim', 'Dia_Semana', 'Status', 'Inicio_Aulas', 'Fim_Aulas'])
         course  = data.to_dict()
     except Exception as e:
         return "[ERRO_GMD]: Erro ao pegar os dados das matérias. <" + str(e) + ">"
