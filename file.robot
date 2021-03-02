@@ -8,7 +8,8 @@ Resource     resources/PageObjects/Blackboard/blackboard.robot
 *** Variables ***
 ${DIR}             ${CURDIR}
 ${MATERIAL}        materias.xls
-${LOGIN}           aluno.xls     
+${LOGIN}           aluno.xls
+${PLAN_BROWSER}    navegador.xls              
 
 *** Keywords ***
 ####################################################################################################
