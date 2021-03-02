@@ -23,7 +23,7 @@ Procedimento Padrão
 ############################################################################################################
 
 Percorrer Curso do Dia
-    ${lenCourses}       Materias Length
+    ${lenCourses}       Materias Length   ${DIR}  ${MATERIAL}
     ${theday}           Get Date
     FOR       ${i}      IN RANGE    ${lenCourses}
         ${nowhour}      Get Time 
