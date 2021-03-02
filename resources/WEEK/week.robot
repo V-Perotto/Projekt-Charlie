@@ -2,9 +2,6 @@
 Resource    ../../file.robot
 
 *** Variables ***
-# ${Materia1}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[1]/a
-# ${Materia2}        xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li[2]/a
-
 ${EXCEL_COURSE}            Materias
 ${EXCEL_HOUR_START}        Hora_Inicio
 ${EXCEL_HOUR_END}          Hora_End
