@@ -2,20 +2,17 @@
 Resource   ../file.robot
 Library    SeleniumLibrary
 Library    String
-Library    ../scripts/python.py
+Library    ../python.py
+Library    ../filelogger.py
 
 *** Variables ***
 ${URL}                  https://ava.pucpr.br/blackboardauth/
-${BROWSER}              chrome
 
 *** Keywords ***
 Open PUC 
+    ${BROWSER}          Set Browser 
     Open Browser        ${URL}    ${BROWSER}
     Maximize Browser Window
-
-Get Keyword 
-    [Arguments]         ${kword}
-    python.get_keyword  ${kword}
 
 ####################################################################################################
 ###            > > > > > > > [xls]          GET EXCEL                                            ###
@@ -31,6 +28,11 @@ Get User Data
     ${login}            python.get_user_data        ${path}   ${user}
     [Return]            ${login}
 
+Get and Set Browser
+    [Arguments]         ${path}   ${plan_browser}
+    ${browser}          python.set_browser          ${path}   ${plan_browser}
+    [Return]            ${browser}
+
 Lower String
     [Arguments]         ${args}
     ${LOW_ARGS}         python.lower_string         ${args} 
@@ -44,6 +46,10 @@ Get Type
 ####################################################################################################
 ###            > 0 > 1 > 2 > [3]            GET THING                                            ###
 ####################################################################################################
+
+Get Keyword 
+    [Arguments]         ${kword}
+    python.get_keyword  ${kword}
 
 Materias Length
     [Arguments]         ${dir}      ${materia}
@@ -61,6 +67,12 @@ User ID
     ${password}         Evaluate             ${pass}.get(0)
     ${ID}               Create List          ${username}   ${password}
     [Return]            ${ID}       
+
+Set Browser
+    ${DICT_BROWSER}     Get and Set Browser         ${DIR}   ${PLAN_BROWSER}
+    ${not_browser}      Set Variable                ${DICT_BROWSER}[Browser]
+    ${real_browser}     Set Variable                ${not_browser}[${0}]
+    [Return]            ${real_browser}
 
 ####################################################################################################
 #               [X] > > > >          GET & SET MATERIAL DATA        > > > > [Y]                    #
