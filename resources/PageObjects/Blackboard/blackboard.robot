@@ -5,7 +5,7 @@ Resource    ../../../file.robot
 ${MENU}              xpath=//a[@id="menuPuller"]
 ${WEBCONF}           xpath=//span[@title="Webconferência"]
 ${COLLABORATE}       xpath=//span[contains(text(), "Blackboard Collaborate Ultra")]
-${Materia}           xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]/li/a[contains(text(),
+${Materia}           xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]//a[contains(text(), "DEFAULT")]
 
 *** Keywords ***
 Access BB Course
@@ -17,10 +17,10 @@ Access BB Course
 
 Acessar Matéria
     [Arguments]       ${course}   ${endhour} 
-    ${day_course}     Set Variable               ${Materia} "${curso}")]  
-    ${result} =       Page Should Not Contain    ${day_course}
-    ${jump_course}    Run Keyword If             "${result}"=="None"   Set Variable  ${1}   
-    ...       ELSE    Clicar na Matéria          ${day_course}    ${endhour}
+    ${day_course}=    Replace String                 ${Materia}    DEFAULT    ${course}
+    ${result} =       Element Should Not Contain     ${day_course}   ${course}
+    ${jump_course}    Run Keyword If                 "${result}"=="None"   Set Variable  ${1}   
+    ...       ELSE    Clicar na Matéria              ${day_course}    ${endhour}
     [Return]          ${jump_course}
     
 Clicar na Matéria
