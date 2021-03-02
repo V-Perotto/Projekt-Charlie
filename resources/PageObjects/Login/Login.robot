@@ -2,7 +2,7 @@
 Resource    ../../../file.robot
 
 *** Variables ***
-${LINK_CLICK}        xpath=//a[contains(text(), "clique aqui")]
+# ${LINK_CLICK}        xpath=//a[contains(text(), "clique aqui")]
 ${INPUT_USER}        xpath=//input[@id="user_id"]
 ${INPUT_PASS}        xpath=//input[@id="password"]
 ${BTN_ENTRAR}        xpath=//div[@title="entrar"]
@@ -18,11 +18,13 @@ Acessar Blackboard
     Click Element                    ${BTN_ENTRAR}
 
 Cookies
+    # Exceção para Usuario/Senha incorreto/não visualizavel?
     Wait Until Element Is Visible    ${BTN_OK}
     Click Element                    ${BTN_OK}
     # Wait Until Element Is Visible    ${LINK_CLICK}
     # Click Element                    ${LINK_CLICK}
 
 Cursos
+    # Exceção para cursos não visualizavel?
     Wait Until Element Is Visible    ${CURSOS_LINK}
     Click Element                    ${CURSOS_LINK}
