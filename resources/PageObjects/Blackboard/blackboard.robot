@@ -9,14 +9,14 @@ ${Materia}           xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]//a[contains
 
 *** Keywords ***
 Access BB Course
-    [Arguments]       ${course}   ${endhour}
-    ${jump_course}    Acessar Matéria   ${course}   ${endhour}
+    [Arguments]       ${course}   ${nowhour}    ${starthour}    ${endhour}
+    ${jump_course}    Acessar Matéria   ${course}   ${nowhour}    ${starthour}    ${endhour}
     [Return]          ${jump_course}
 
 #######################################################################################
 
 Acessar Matéria
-    [Arguments]       ${course}   ${endhour} 
+    [Arguments]       ${course}   ${nowhour}    ${starthour}    ${endhour} 
     ${day_course}=    Replace String                 ${Materia}    DEFAULT    ${course}
     ${result} =       Element Should Not Contain     ${day_course}   ${course}
     ${jump_course}    Run Keyword If                 "${result}"=="None"   Set Variable  ${1}   
