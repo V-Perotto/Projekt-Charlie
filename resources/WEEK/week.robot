@@ -56,13 +56,13 @@ Percorrer Curso do Dia
 
 Inicio Faculdade
     [Arguments]       ${course}   ${weekday}   ${nowhour}   ${starthour}   ${endhour}
-    ${rtn_college}    Number Weekday    ${weekday}    ${nowhour}    ${starthour}   
+    ${rtn_college}    Number Weekday    ${weekday}       
     ${whatisthis}     Get Type          ${rtn_college}
-    ${jump_course}    Run Keyword If    "${rtn_college}"=="${1}"    Access BB Course    ${course}   ${endhour}  
-    ${jump_course}    Run Keyword If    "${rtn_college}"=="${2}"    Access BB Course    ${course}   ${endhour}
-    ${jump_course}    Run Keyword If    "${rtn_college}"=="${3}"    Access BB Course    ${course}   ${endhour}
-    ${jump_course}    Run Keyword If    "${rtn_college}"=="${4}"    Access BB Course    ${course}   ${endhour}
-    ${jump_course}    Run Keyword If    "${rtn_college}"=="${5}"    Access BB Course    ${course}   ${endhour}
+    ${jump_course}    Run Keyword If    "${rtn_college}"=="${1}"    Access BB Course    ${course}   ${nowhour}    ${starthour}    ${endhour}  
+    ${jump_course}    Run Keyword If    "${rtn_college}"=="${2}"    Access BB Course    ${course}   ${nowhour}    ${starthour}    ${endhour}
+    ${jump_course}    Run Keyword If    "${rtn_college}"=="${3}"    Access BB Course    ${course}   ${nowhour}    ${starthour}    ${endhour}
+    ${jump_course}    Run Keyword If    "${rtn_college}"=="${4}"    Access BB Course    ${course}   ${nowhour}    ${starthour}    ${endhour}
+    ${jump_course}    Run Keyword If    "${rtn_college}"=="${5}"    Access BB Course    ${course}   ${nowhour}    ${starthour}    ${endhour}
     ...    ELSE IF    "${whatisthis}"!="<class 'int'>"   Log        ${rtn_college}
     [Return]          ${jump_course}
 
