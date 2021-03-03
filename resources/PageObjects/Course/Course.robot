@@ -18,17 +18,21 @@ Entrar na Aula
     Acessar Curso do Dia
 
 Acessar Webconferência
+    # ${result} =   Run Keyword And Return Status   Element Should Be Visible    ${WEBCONFERENCIA}
+    # Run Keyword If   ${result}
     Wait Until Element Is Visible   ${WEBCONFERENCIA}
     Click Element       ${WEBCONFERENCIA}
 
 Acessar Collaborate Ultra
+    # ${result} =   Run Keyword And Return Status   Element Should Be Visible    ${WEBCONFERENCIA}
+    # Run Keyword If   ${result}
     Wait Until Element Is Visible   ${COLLABORATE_ULTRA}
     Click Element       ${COLLABORATE_ULTRA}
 
 Acessar Curso do Dia
     Select Frame
-    Wait Until Element Is Visible   ${SETA_CURSOS}
-    Click Element       ${SETA_CURSOS}
+    ${result} =   Run Keyword And Return Status   Element Should Be Visible    ${SETA_CURSOS}
+    Run Keyword If      ${result}   Click Element       ${SETA_CURSOS}
 
 # Valida Curso
 #     validar começo e fim do horario do curso com o do excel 
