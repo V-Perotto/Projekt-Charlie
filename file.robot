@@ -51,11 +51,9 @@ Verify Date
     [Return]          ${rtn_date}
 
 Start Class
-    [Arguments]       ${start_hour}
     ${nowhour}        Get Time
-    Wait For Condition      ${nowhour} >= ${start_hour} 
+    ${rtn} =          Wait For Condition      ${nowhour} >= ${start_hour} 
 
 End Class
-    [Arguments]       ${end_hour}
     ${nowhour}        Get Time
-    Wait For Condition      ${nowhour} >= ${end_hour}
+    ${rtn} =          Wait For Condition      ${nowhour} >= ${end_hour}
