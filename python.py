@@ -36,29 +36,23 @@ def set_browser(path, plan_browser):
 
 def set_weekday(args):
     try:
-        if 'segunda' or 'segunda-feira' in args:
+        if 'segunda' in args or 'segunda-feira' in args:
             rtn = 'Monday'
-            return rtn
-        elif 'terça' or 'terca' or 'terça-feira' or 'terca-feira' in args: 
+        elif 'terça' in args or 'terca' in args or 'terça-feira' in args or 'terca-feira' in args: 
             rtn = 'Tuesday'
-            return rtn
-        elif 'quarta' or 'quarta-feira' in args:
+        elif 'quarta' in args or 'quarta-feira' in args:
             rtn = 'Wednesday'
-            return rtn
-        elif 'quinta' or 'quinta-feira' in args: 
+        elif 'quinta' in args or 'quinta-feira' in args: 
             rtn = 'Thursday'
-            return rtn
-        elif 'sexta' or 'sexta-feira' in args:
+        elif 'sexta' in args or 'sexta-feira' in args:
             rtn = 'Friday'
-            return rtn
-        elif 'sábado' or 'sabado' in args: 
+        elif 'sábado' in args or 'sabado' in args: 
             rtn = 'Saturday'
-            return rtn
         elif 'domingo' in args:
             rtn = 'Sunday'
-            return rtn
         else:
             return '[ERRO]: Data inválida.'
+        return rtn
     except Exception as e:
         filelog('PYTHON', '[SW]:\n' + str(traceback.format_exc()))
         return "[ERRO_SW]: Erro ao indicar o dia da semana. <" + str(e) + ">"
