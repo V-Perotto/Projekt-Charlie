@@ -44,7 +44,7 @@ Percorrer Curso do Dia
         ${DAY}          Date Convertion                   ${theday}
         ${rtn_date}     Verify Date                       ${eng_day}    ${DAY}
         
-        ${jump_course}  Run Keyword If  ${rtn_date}  Inicio Faculdade   ${course}   ${eng_day}   ${nowhour}   ${hour_start}   ${hour_end}
+        ${jump_course}  Run Keyword If  ${rtn_date}  Inicio Faculdade   ${course}   ${eng_day}   ${nowhour}   ${s_hour}   ${e_hour}
         ...       ELSE  Log  [ALERTA]: Hoje não tem essa aula.
 
         ${type}         Get Type    ${jump_course} 
