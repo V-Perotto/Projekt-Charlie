@@ -48,8 +48,8 @@ Get Type
 ####################################################################################################
 
 Get Keyword 
-    [Arguments]         ${kword}
-    python.get_keyword  ${kword}
+    [Arguments]         ${kword}   ${args}=''
+    python.get_keyword  ${kword}   ${args}
 
 Materias Length
     [Arguments]         ${dir}      ${materia}
@@ -84,8 +84,8 @@ Set Weekday
     [Return]            ${SET_DAY}
 
 Number Weekday
-    [Arguments]         ${weekday}     ${nowhour}     ${starthour}
-    ${RTN_DAY}          python.number_weekday    ${weekday}     ${nowhour}     ${starthour}
+    [Arguments]         ${weekday}
+    ${RTN_DAY}          python.number_weekday    ${weekday}
     [Return]            ${RTN_DAY}
 
 Set Data
