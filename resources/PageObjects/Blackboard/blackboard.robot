@@ -6,6 +6,7 @@ ${MENU}              xpath=//a[@id="menuPuller"]
 ${WEBCONF}           xpath=//span[@title="Webconferência"]
 ${COLLABORATE}       xpath=//h3[@id="anonymous_element_8"]/a/span
 ${Materia}           xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]//a[contains(text(), "DEFAULT")]
+${course_list}       xpath=//ul[@class="portletList-img courseListing coursefakeclass "][1]/li
 
 *** Keywords ***
 Access BB Course
@@ -17,13 +18,19 @@ Access BB Course
 
 Acessar Matéria
     [Arguments]       ${course}   ${nowhour}    ${starthour}    ${endhour} 
-    ${day_course}=    Replace String                 ${Materia}    DEFAULT    ${course}
-    Element Should Contain         ${day_course}     ${course}
-    ${hasclass}       Get Text     ${day_course}
-    Log To Console    ${course}
-    Log To Console    ${hasclass}
-    ${jump_course}    Run Keyword If    "${course}" in "${hasclass}"   Clicar na Matéria   ${day_course}    ${endhour}      
-    ...       ELSE    Set Variable      ${1}
+    Wait Until Element Is Visible            ${course_list}
+    ${count}=         Get Element Count      ${course_list}
+    FOR  ${i}  IN RANGE   1   ${count} + 1
+        ${hasclass}       Get Text          //ul[@class="portletList-img courseListing coursefakeclass "][1]/li[${i}]
+        ${classname}      Set Variable      xpath=//ul[@class="portletList-img courseListing coursefakeclass "][1]/li[${i}]    
+        ${jump_course}    Run Keyword If    "${course}" in "${hasclass}"   Clicar na Matéria   ${classname}    ${endhour}      
+        ...       ELSE    Set Variable      ${1}
+    END
+    # ${day_course}=    Replace String                ${Materia}    DEFAULT    ${course}
+    # Element Should Contain         ${day_course}    ${course}
+    # ${hasclass}       Get Text     ${day_course}
+    # Log To Console    ${course}
+    # Log To Console    ${hasclass}
     [Return]          ${jump_course}
     
 Clicar na Matéria
@@ -42,4 +49,8 @@ Iniciar Aula
     Click Element     ${COLLABORATE}
 
 Encerrar Aula
-    Get Keyword       End Class        
+    [Arguments]       ${endhour}
+    # Adicionar em uma planilha pra poder fazer uma verificação 
+    # do horário, pra caso haja outra aula no dia ou somente p/
+    # finalização da aula atual
+    End Class        
