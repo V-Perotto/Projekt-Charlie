@@ -8,11 +8,16 @@ from datetime import datetime
 # Obrigado Fabrício por me mostrar como criar um log em python e por ser um
 # colega incrível :)
 def filelog(name, desc):
-    print("ENTROU")
-    
-    if name == "PYTHON":
+    # print("ENTROU")
+    if name == "PY_F":
         path_way = getcwd()
-        path_logs = path_way + "/results/log"
+        path_logs = path_way + "/results/log_py/ERROR"
+    if name == "PY_S":
+        path_way = getcwd()
+        path_logs = path_way + "/results/log_py/SUCCESS"
+    if name == "RF":
+        path_way = getcwd()
+        path_logs = path_way + "/results/log_rf/"
 
     # Obtem a data atual e hora
     data = datetime.now().strftime("%d-%m-%Y")
@@ -28,8 +33,8 @@ def filelog(name, desc):
             return
 
     with open(join(path_logs,"CHARLIE_"+ data + ".txt"), "a") as file:
-        file.write("===================================================\n" +
-                   "\t\t\t\tPROJEKT CHARLIE\n" +    # pov: cursed python
-                   "===================================================\n\n\n" + 
+        file.write("|===================================================|\n" +
+                   "|\t\t\t\t   PROJEKT CHARLIE \t\t\t\t\t|\n" +    # pov: cursed python
+                   "|===================================================|\n\n\n" + 
                    data_hora + " : " + desc + '\n')
     return
