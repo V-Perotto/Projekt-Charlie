@@ -1,5 +1,6 @@
 *** Settings ***
 Library      DateTime
+Library      filelogger.py
 Resource     resources/resource.robot
 Resource     resources/WEEK/week.robot
 Resource     resources/PageObjects/Login/Login.robot
