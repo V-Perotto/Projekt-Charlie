@@ -11,11 +11,13 @@ ${CURSOS_LINK}       xpath=//*[@id="Courses.label"]/a
 
 *** Keywords ***
 Acessar Blackboard
+    filelogger.Filelog     RF    [Acessar Blackboard]: ENTROU
     ${ID}       User ID    ${DIR}    ${LOGIN}
     Wait Until Element Is Visible    ${INPUT_USER}
     Input Text                       ${INPUT_USER}    ${ID}[0]
     Input Text                       ${INPUT_PASS}    ${ID}[1]
     Click Element                    ${BTN_ENTRAR}
+    filelogger.Filelog     RF    Clicou no botão para entrar
 
 Cookies
     # Exceção para Usuario/Senha incorreto/não visualizavel?
