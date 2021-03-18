@@ -1,4 +1,4 @@
-robotframework==3.2.2
+robotframework==3.2.2       # Existe uma atualização nova do RF==4.0
 robotframework-excellib==2.0.1
 robotframework-pythonlibcore==2.1.0
 robotframework-seleniumlibrary==4.5.0
