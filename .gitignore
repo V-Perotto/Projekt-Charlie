@@ -3,3 +3,4 @@ results/
 scripts/__pycache__/
 .venv/
 .vscode/
+charlie/pyvenv.cfg
