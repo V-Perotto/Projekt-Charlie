@@ -18,45 +18,44 @@ ${PARTICIPATE_CLASS}     xpath=//*[@id="offcanvas-wrap"]/div[2]/div/div/div/div/
 *** Keywords ***
 Access BB Course
     [Arguments]       ${course}   ${nowhour}    ${starthour}    ${endhour}
+    filelogger.Filelog       RF  [Access BB Course]: ENTROU
     ${jump_course}    Acessar Matéria   ${course}   ${nowhour}    ${starthour}    ${endhour}
+    filelogger.Filelog       RF  Acessou o Curso do Blackboard com retorno: "${jump_course}"
+    filelogger.Filelog       RF  [Access BB Course]: SAIU
     [Return]          ${jump_course}
 
 #######################################################################################
 
 Acessar Matéria
     [Arguments]       ${course}   ${nowhour}    ${starthour}    ${endhour} 
+    filelogger.Filelog       RF   [Acessar Matéria]: ENTROU
     Wait Until Element Is Visible         ${course_list}
-    # ${count}=         Get Element Count      ${course_list}
-    # FOR  ${i}  IN RANGE   1   ${count} + 1
-    #     ${hasclass}       Get Text          //ul[@class="portletList-img courseListing coursefakeclass "][1]/li[${i}]
-    #     ${classname}      Set Variable      xpath=//ul[@class="portletList-img courseListing coursefakeclass "][1]/li[${i}]    
-    #     ${jump_course}    Run Keyword If    "${course}" in "${hasclass}"   Clicar na Matéria   ${classname}    ${endhour}      
-    #     ...       ELSE    Set Variable      ${1}
-    # END
     ${day_course}=      Replace String                    ${Materia}    DEFAULT    ${course}
     ${containsCourse}   Run Keyword And Return Status     Element Should Contain         ${day_course}    ${course}
     ${hasclass}         Get Text          ${day_course}
     ${jump_course}      Run Keyword If    ${containsCourse} and "${course}" in "${hasclass}"     Clicar na Matéria   ${day_course}    ${endhour} 
-    ...       ELSE      Set Variable      ${1}  
-    # Log To Console    ${course}
-    # Log To Console    ${hasclass}
-    [Return]          ${jump_course}
+    ...       ELSE      Set Variable      ${1} 
+    filelogger.Filelog       RF    Acessou a matéria com o retorno: "${jump_course}"
+    filelogger.Filelog       RF   [Acessar Matéria]: SAIU
+    [Return]           ${jump_course}
     
 Clicar na Matéria
+    filelogger.Filelog       RF  [Clicar na Matéria]: ENTROU
     [Arguments]       ${day_course}     ${endhour}
     Wait Until Element Is Visible       ${day_course}
     Click Element     ${day_course}
+    filelogger.Filelog       RF  Clicou no curso do dia e vai acessar [Iniciar Aula]
     Iniciar Aula
-    # Encerrar Aula     ${endhour}
+    filelogger.Filelog       RF  [Clicar na Matéria]: SAIU
 
 Iniciar Aula
-    # Wait Until Element Is Visible       ${MENU}
-    # Click Element     ${MENU}
+    filelogger.Filelog       RF  [Iniciar Aula]: ENTROU
     Wait Until Element Is Visible       ${WEBCONF}
     Click Element     ${WEBCONF}
     Wait Until Element Is Visible       ${COLLABORATE}
     Click Element     ${COLLABORATE}
     Select Frame      ${FRAME_BB}
+    filelogger.Filelog       RF  [FRAME]: entrou
     Wait Until Element Is Visible       ${AULA_ULTRA}
     Sleep    3
     ${containsArrow}  Run Keyword And Return Status              Element Should Be Enabled    ${ARROW}
@@ -68,16 +67,20 @@ Iniciar Aula
     Run Keyword If    ${containsParticipate}    Click Element    ${PARTICIPATE_CLASS}
     ...       ELSE    Log   [PASS]
     Unselect Frame
-
+    filelogger.Filelog       RF  [FRAME]: saiu
+    filelogger.Filelog       RF  [Iniciar Aula]: SAIU
 
 Clicar na Flecha
+    filelogger.Filelog       RF  [Clicar na Flecha]: ENTROU
     Click Element    ${ARROW}
     Click Element    ${AULA_ULTRA_LIST} 
+    filelogger.Filelog       RF  [Clicar na Flecha]: SAIU
     [Return]    ${containsArrow}
     
 
 Encerrar Aula
     [Arguments]       ${endhour}
+    filelogger.Filelog       RF  [Encerrar Aula]: ENTROU
     # Adicionar em uma planilha pra poder fazer uma verificação 
     # do horário, pra caso haja outra aula no dia ou somente p/
     # finalização da aula atual
