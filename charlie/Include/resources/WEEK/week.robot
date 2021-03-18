@@ -12,10 +12,15 @@ ${EXCEL_ENDCLASS}          Fim_Aulas
 
 *** Keywords ***
 Procedimento Padrão
+    filelogger.Filelog    RF    >> INICIOU
     Open PUC
+    filelogger.Filelog    RF    >> Acessou navegador no PUC:Blackboard
     Acessar Blackboard
+    filelogger.Filelog    RF    >> Entrou no PUC:Blackboard
     Cookies
-    Cursos 
+    filelogger.Filelog    RF    >> Fechou os Cookies
+    Cursos
+    filelogger.Filelog    RF    >> Acessou os Cursos 
 
 ############################################################################################################
 
@@ -51,6 +56,7 @@ Percorrer Curso do Dia
         Run Keyword If  "${type}"!="<class 'int'>"   Log  CONTINUE  
         ...       ELSE  Evaluate    ${i}+${1}
     END
+    filelogger.Filelog    RF    Percorreu o curso do dia
 
 ############################################################################################################
 
@@ -64,6 +70,7 @@ Inicio Faculdade
     ${jump_course}    Run Keyword If    "${rtn_college}"=="${4}"    Access BB Course    ${course}   ${nowhour}    ${starthour}    ${endhour}
     ${jump_course}    Run Keyword If    "${rtn_college}"=="${5}"    Access BB Course    ${course}   ${nowhour}    ${starthour}    ${endhour}
     ...    ELSE IF    "${whatisthis}"!="<class 'int'>"   Log        ${rtn_college}
+    filelogger.Filelog    RF    Iniciou a Keyword "Inicio Faculdade" como o retorno para JumpCourse: "${jump_course}"
     [Return]          ${jump_course}
 
 ############################################################################################################ 
