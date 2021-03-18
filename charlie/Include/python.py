@@ -10,7 +10,7 @@ def get_user_data(path, plan_user):
         data = pd.read_excel(way, usecols= ['username','password'])
         login = data.to_dict()
     except Exception as e:
-        filelog('PYTHON', '[GUD]:\n' + str(traceback.format_exc()))
+        filelog('PY_F', '[GUD]:\n' + str(traceback.format_exc()))
         return "[ERRO_GUD]: Erro ao pegar os dados do usuário. <" + str(e) + ">"
     return login
 
@@ -20,7 +20,7 @@ def get_materia_data(path, plan_materia):
         data = pd.read_excel(way, usecols=['Materias', 'Hora_Inicio', 'Hora_Fim', 'Dia_Semana', 'Status', 'Inicio_Aulas', 'Fim_Aulas'])
         course  = data.to_dict()
     except Exception as e:
-        filelog('PYTHON', '[GMD]:\n' + str(traceback.format_exc()))
+        filelog('PY_F', '[GMD]:\n' + str(traceback.format_exc()))
         return "[ERRO_GMD]: Erro ao pegar os dados das matérias. <" + str(e) + ">"
     return course
 
@@ -30,7 +30,7 @@ def set_browser(path, plan_browser):
         data = pd.read_excel(way, usecols=['Browser'])
         browser = data.to_dict()
     except Exception as e:
-        filelog('PYTHON', '[SB]:/n' + str(e))
+        filelog('PY_F', '[SB]:/n' + str(e))
         return "[ERRO_GMD]: Erro ao pegar os dados do browser. <" + str(e) + ">"
     return browser
 
@@ -54,7 +54,7 @@ def set_weekday(args):
             return '[ERRO]: Data inválida.'
         return rtn
     except Exception as e:
-        filelog('PYTHON', '[SW]:\n' + str(traceback.format_exc()))
+        filelog('PY_F', '[SW]:\n' + str(traceback.format_exc()))
         return "[ERRO_SW]: Erro ao indicar o dia da semana. <" + str(e) + ">"
 
 # Antigo
@@ -73,7 +73,7 @@ def set_weekday(args):
 #         else:
 #             return str("[ALERTA]: Sem aula nesse dia")
 #     except Exception as e:
-#         filelog('PYTHON', '[SC]:\n' +str(traceback.format_exc()))
+#         filelog('PY_F', '[SC]:\n' +str(traceback.format_exc()))
 #         return "[ERRO_SC]: Erro ao validar o dia e horário. <" + str(e) + ">"
 
 def number_weekday(weekday):
@@ -91,7 +91,7 @@ def number_weekday(weekday):
         else:
             return str("[ALERTA]: Sem aula nesse dia")
     except Exception as e:
-        filelog('PYTHON', '[SC]:\n' +str(traceback.format_exc()))
+        filelog('PY_F', '[SC]:\n' +str(traceback.format_exc()))
         return "[ERRO_SC]: Erro ao validar o dia. <" + str(e) + ">"
 
 def get_keyword(kword):
@@ -106,7 +106,7 @@ def get_keyword(kword):
             else: 
                 k = True
     except Exception as e:
-        filelog('PYTHON', '[RFK]:\n' + str(traceback.format_exc()))
+        filelog('PY_F', '[RFK]:\n' + str(traceback.format_exc()))
         return '-1:/n' + str(e)
         
 
@@ -114,12 +114,12 @@ def lower_string(args):
     try:
         return args.lower()
     except Exception as e:
-        filelog('PYTHON', '[LS]:\n' + str(traceback.format_exc()))
+        filelog('PY_F', '[LS]:\n' + str(traceback.format_exc()))
         return '-2:/n' + str(e)
 
 def get_type(args):
     try:
         return type(args)
     except Exception as e:
-        filelog('PYTHON', '[GT]:\n' + str(traceback.format_exc()))
+        filelog('PY_F', '[GT]:\n' + str(traceback.format_exc()))
         return '-3:/n' + str(e)
