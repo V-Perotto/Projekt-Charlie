@@ -22,8 +22,6 @@ Procedimento Padrão
     Cursos
     filelogger.Filelog    RF    >> Acessou os Cursos 
 
-############################################################################################################
-
 Percorrer Curso do Dia
     ${lenCourses}       Materias Length   ${DIR}  ${MATERIAL}
     ${theday}           Get Date
@@ -58,8 +56,6 @@ Percorrer Curso do Dia
     END
     filelogger.Filelog    RF    Percorreu o curso do dia
 
-############################################################################################################
-
 Inicio Faculdade
     [Arguments]       ${course}   ${weekday}   ${nowhour}   ${starthour}   ${endhour}
     ${rtn_college}    Number Weekday    ${weekday}       
@@ -72,5 +68,3 @@ Inicio Faculdade
     ...    ELSE IF    "${whatisthis}"!="<class 'int'>"   Log        ${rtn_college}
     filelogger.Filelog    RF    Iniciou a Keyword "Inicio Faculdade" como o retorno para JumpCourse: "${jump_course}"
     [Return]          ${jump_course}
-
-############################################################################################################ 

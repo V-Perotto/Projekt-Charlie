@@ -2,11 +2,8 @@
 Resource    ../../../file.robot
 
 *** Variables ***
-## fora do iframe
 ${WEBCONFERENCIA}      xpath=//span[@title="Webconferência"]
 ${COLLABORATE_ULTRA}   xpath=//h3[@id="anonymous_element_4"]/a/span
-
-## dentro do iframe - blackboard
 ${SETA_CURSOS}               xpath=//button[@class="icon-button has-tooltip"]
 ${INPUT_HORARIO_INICIO}      xpath=//ul/li/ul/li[1]/div/button/div[2]/span[2]/div/span//bdi[1]
 ${INPUT_HORARIO_FIM}         xpath=//ul/li/ul/li[1]/div/button/div[2]/span[2]/div/span//bdi[2]
@@ -50,8 +47,6 @@ Acessar Curso do Dia
 
 Valida Curso
     filelogger.Filelog     RF  [Valida Curso]: ENTROU
-#     validar começo e fim do horario do curso com o do excel 
-#     para então acessar a aula
     ${HORARIO_INICIO}   Get Text    ${INPUT_HORARIO_INICIO}
     ${HORARIO_FIM}      Get Text    ${INPUT_HORARIO_FIM}
     filelogger.Filelog     RF  [RETORNO]: Inicio: ${HORARIO_INICIO}. Fim: ${HORARIO_FIM} 
