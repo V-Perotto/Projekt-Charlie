@@ -1,3 +1,4 @@
-CHROMEDRIVER = 88.0.4324.190 - 64 bits
+# usados para essa build - v1.0 - [BETA]
+CHROMEDRIVER = 88.0.4324.190/89.0.4389.90 - 64 bits
 GECKODRIVER = v0.29 - 64 bits
 Python >= 3.7 - 64 bits
