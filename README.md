@@ -38,4 +38,4 @@ Você pode fazer agora a instalação do Charlie no link abaixo.
 
 * [Baixar Charlie].
 
-[Baixar Charlie]: 
+[Baixar Charlie]: https://github.com/V-Perotto/Projekt-Charlie/releases
