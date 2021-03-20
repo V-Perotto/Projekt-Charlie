@@ -57,25 +57,6 @@ def set_weekday(args):
         filelog('PY_F', '[SW]:\n' + str(traceback.format_exc()))
         return "[ERRO_SW]: Erro ao indicar o dia da semana. <" + str(e) + ">"
 
-# Antigo
-# def number_weekday(weekday, n_hour, s_hour):
-#     try:
-#         if 'Monday' in weekday and n_hour >= s_hour:
-#             return 1
-#         elif 'Tuesday' in weekday and n_hour >= s_hour:       
-#             return 2
-#         elif 'Wednesday' in weekday and n_hour >= s_hour:     
-#             return 3    
-#         elif 'Thrusday' in weekday and n_hour >= s_hour:      
-#             return 4
-#         elif 'Friday' in weekday and n_hour >= s_hour:        
-#             return 5
-#         else:
-#             return str("[ALERTA]: Sem aula nesse dia")
-#     except Exception as e:
-#         filelog('PY_F', '[SC]:\n' +str(traceback.format_exc()))
-#         return "[ERRO_SC]: Erro ao validar o dia e horário. <" + str(e) + ">"
-
 def number_weekday(weekday):
     try:
         if 'Monday' in weekday:
