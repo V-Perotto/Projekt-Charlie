@@ -8,8 +8,6 @@ ${COLLABORATE}           xpath=//h3[@id="anonymous_element_8"]/a/span
 ${Materia}               xpath=//div[@id="_3_1termCourses_noterm"]/ul[1]//a[contains(text(), "DEFAULT")]
 ${course_list}           xpath=//ul[@class="portletList-img courseListing coursefakeclass "][1]/li
 ${FRAME_BB}              xpath=//iframe[@id="collabUltraLtiFrame"]
-
-# NO ARROW    
 ${AULA_ULTRA}            xpath=/html/body/div[1]/div/div[1]/main/div[2]/div[3]/ul/li/div/button/div[2]/span[2]/div/span
 ${ARROW}                 xpath=//*[@id="body-content"]/div[3]/ul/li/div/div[2]/ul/li/button
 ${AULA_ULTRA_LIST}       xpath=/html/body/div[1]/div/div[1]/main/div[2]/div[3]/ul/li/ul/li[1]/div/button/div[2]
@@ -23,8 +21,6 @@ Access BB Course
     filelogger.Filelog       RF  Acessou o Curso do Blackboard com retorno: "${jump_course}"
     filelogger.Filelog       RF  [Access BB Course]: SAIU
     [Return]          ${jump_course}
-
-#######################################################################################
 
 Acessar Matéria
     [Arguments]       ${course}   ${nowhour}    ${starthour}    ${endhour} 
@@ -75,13 +71,4 @@ Clicar na Flecha
     Click Element    ${ARROW}
     Click Element    ${AULA_ULTRA_LIST} 
     filelogger.Filelog       RF  [Clicar na Flecha]: SAIU
-    [Return]    ${containsArrow}
-    
-
-Encerrar Aula
-    [Arguments]       ${endhour}
-    filelogger.Filelog       RF  [Encerrar Aula]: ENTROU
-    # Adicionar em uma planilha pra poder fazer uma verificação 
-    # do horário, pra caso haja outra aula no dia ou somente p/
-    # finalização da aula atual
-    End Class        
+    [Return]    ${containsArrow}  
