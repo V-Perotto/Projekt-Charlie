@@ -3,11 +3,9 @@ Resource     ../file.robot
 Resource     ../resources/resource.robot
 
 *** Test Cases ***
-# PUC: Validar Matérias do Dia
 Acessar Aulas: PUCPR
-    filelogger.Filelog     RF  ----------------- [INICIO]: COMEÇOU -----------------  
-    # criar um verificador de horario e excluidor de logs antigos e prints antigas
+    filelogger.Filelog     RF  ---------------------------------- [INICIO]: COMEÇOU ----------------------------------  
     Procedimento Padrão
     Percorrer Curso do Dia
-    filelogger.Filelog     RF  ----------------- [FIM]: FINALIZOU -----------------
+    filelogger.Filelog     RF  ---------------------------------- [FIM]: FINALIZOU ----------------------------------
     
